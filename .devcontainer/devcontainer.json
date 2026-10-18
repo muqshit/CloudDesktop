@@ -6,13 +6,10 @@
   "forwardPorts": [6080],
   "portsAttributes": {
     "6080": {
-      "label": "Cloud PC Desktop",
+      "label": "ABMMM Cloud PC",
+      "protocol": "http",
       "onAutoForward": "openBrowser"
     }
   },
-  "remoteUser": "vscode",
-  "containerEnv": {
-    "DISPLAY": ":1"
-  },
-  "postStartCommand": "bash /usr/local/bin/start-desktop.sh"
+  "remoteUser": "vscode"
 }
