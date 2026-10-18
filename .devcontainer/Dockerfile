@@ -7,11 +7,9 @@ RUN apt-get update && apt-get install -y \
     xfce4 \
     xfce4-goodies \
     dbus-x11 \
-    x11-xserver-utils \
-    x11vnc \
     xvfb \
+    x11vnc \
     novnc \
-    websockify \
     supervisor \
     firefox \
     thunar \
@@ -25,17 +23,12 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /home/vscode/.vnc \
-    /var/log/supervisor \
-    /var/run/supervisor
-
-COPY supervisord.conf /etc/supervisor/conf.d/cloudpc.conf
 COPY start-desktop.sh /usr/local/bin/start-desktop.sh
+COPY supervisord.conf /etc/supervisor/conf.d/cloudpc.conf
 
 RUN chmod +x /usr/local/bin/start-desktop.sh
 
-RUN echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
-    && chmod 0440 /etc/sudoers.d/vscode
+RUN mkdir -p /var/log/supervisor /var/run/supervisor
 
 EXPOSE 6080
 
